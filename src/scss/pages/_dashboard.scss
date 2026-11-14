@@ -1,0 +1,36 @@
+@use "../abstracts" as *;
+
+.page-heading {
+  .eyebrow {
+    color: var(--color-primary);
+  }
+}
+
+.task-table {
+  td:first-child {
+    min-width: 180px;
+    font-weight: 650;
+  }
+}
+
+.search-field {
+  display: block;
+  min-width: 0;
+}
+
+.filter-select {
+  display: block;
+  min-width: 0;
+}
+
+.modal {
+  form {
+    display: block;
+  }
+}
+
+@include respond(tablet) {
+  .page-heading {
+    padding-block: space(10);
+  }
+}

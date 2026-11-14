@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Responsive admin dashboard built with advanced CSS and Sass."
+    />
+    <title>Bloomrix | Admin Dashboard</title>
+  </head>
+  <body>
+    <div class="dashboard">
+      <aside class="sidebar" id="sidebar">
+        <a class="sidebar__brand" href="#" aria-label="Bloomrix home">
+          <span class="sidebar__logo">B</span>
+          <span>Bloomrix</span>
+        </a>
+
+        <p class="sidebar__label">WORKSPACE</p>
+
+        <nav class="sidebar__nav" aria-label="Main navigation">
+          <a class="sidebar__link sidebar__link--active" href="#overview">
+            <span>▦</span> Overview
+          </a>
+          <a class="sidebar__link" href="#projects">
+            <span>▤</span> Projects
+          </a>
+          <a class="sidebar__link" href="#tasks"> <span>✓</span> Tasks </a>
+          <a class="sidebar__link" href="#team"> <span>♙</span> Team </a>
+        </nav>
+
+        <div class="sidebar__bottom">
+          <p class="sidebar__label">PREFERENCES</p>
+          <button class="sidebar__link" id="themeToggle" type="button">
+            <span>◐</span> Toggle theme
+          </button>
+          <div class="sidebar__profile">
+            <div class="avatar">PA</div>
+            <div>
+              <strong>Pervaiz Ahmed</strong>
+              <small>Administrator</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content" id="overview">
+        <header class="topbar">
+          <button
+            class="icon-button menu-button"
+            id="menuToggle"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="sidebar"
+          >
+            ☰
+          </button>
+
+          <div class="topbar__search">
+            <span>⌕</span>
+            <input
+              id="globalSearch"
+              type="search"
+              placeholder="Search dashboard..."
+              aria-label="Search dashboard"
+            />
+          </div>
+
+          <div class="topbar__actions">
+            <button
+              class="icon-button"
+              type="button"
+              aria-label="Notifications"
+            >
+              ♧
+            </button>
+            <div class="avatar">PA</div>
+          </div>
+        </header>
+
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow">WORKSPACE / OVERVIEW</p>
+            <h1>Dashboard Overview</h1>
+            <p class="muted">Welcome back. Here's what's happening today.</p>
+          </div>
+
+          <button class="button button--primary" id="openModal" type="button">
+            + Create task
+          </button>
+        </section>
+
+        <section class="stats-grid" aria-label="Dashboard statistics">
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span class="stat-card__label">Total projects</span>
+              <span class="stat-card__icon">▦</span>
+            </div>
+            <strong class="stat-card__value" id="totalProjects">12</strong>
+            <p class="stat-card__note">Across your workspace</p>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span class="stat-card__label">Active tasks</span>
+              <span class="stat-card__icon">◷</span>
+            </div>
+            <strong class="stat-card__value" id="activeTasks">8</strong>
+            <p class="stat-card__note">Currently in progress</p>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span class="stat-card__label">Completed</span>
+              <span class="stat-card__icon">✓</span>
+            </div>
+            <strong class="stat-card__value" id="completedTasks">24</strong>
+            <p class="stat-card__note">Successfully finished</p>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__top">
+              <span class="stat-card__label">Team members</span>
+              <span class="stat-card__icon">♙</span>
+            </div>
+            <strong class="stat-card__value">06</strong>
+            <p class="stat-card__note">Working together</p>
+          </article>
+        </section>
+
+        <section class="content-panel" id="tasks">
+          <div class="panel-heading">
+            <div>
+              <h2>Recent tasks</h2>
+              <p class="muted">Manage and track your team's work.</p>
+            </div>
+            <button
+              class="button button--secondary"
+              id="exportButton"
+              type="button"
+            >
+              Export CSV
+            </button>
+          </div>
+
+          <div class="filters">
+            <label class="search-field">
+              <span class="visually-hidden">Search tasks</span>
+              <input
+                id="taskSearch"
+                type="search"
+                placeholder="Search tasks..."
+              />
+            </label>
+
+            <label class="filter-select">
+              <span class="visually-hidden">Filter by status</span>
+              <select id="statusFilter">
+                <option value="all">All statuses</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="task-table">
+              <thead>
+                <tr>
+                  <th>Task name</th>
+                  <th>Assignee</th>
+                  <th>Due date</th>
+                  <th>Priority</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="taskTableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <span>⌕</span>
+            <h3>No tasks found</h3>
+            <p>Try changing your search or filter.</p>
+          </div>
+
+          <p class="table-footer" id="taskCount" aria-live="polite"></p>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="taskModal" hidden>
+      <section
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <div class="modal__header">
+          <div>
+            <p class="eyebrow">WORKSPACE</p>
+            <h2 id="modalTitle">Create a task</h2>
+          </div>
+          <button
+            class="icon-button"
+            id="closeModal"
+            type="button"
+            aria-label="Close modal"
+          >
+            ×
+          </button>
+        </div>
+
+        <form id="taskForm" novalidate>
+          <div class="form-group">
+            <label for="taskName">Task name</label>
+            <input
+              id="taskName"
+              name="taskName"
+              type="text"
+              placeholder="Enter task name"
+              required
+              minlength="3"
+            />
+            <small class="field-error" id="nameError"></small>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="assignee">Assignee</label>
+              <input
+                id="assignee"
+                name="assignee"
+                type="text"
+                placeholder="Team member"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="dueDate">Due date</label>
+              <input id="dueDate" name="dueDate" type="date" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority">
+                <option>Medium</option>
+                <option>High</option>
+                <option>Low</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="taskStatus">Status</label>
+              <select id="taskStatus" name="status">
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal__actions">
+            <button
+              class="button button--secondary"
+              id="cancelModal"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              class="button button--primary"
+              id="submitTask"
+              type="submit"
+            >
+              Create task
+            </button>
+          </div>
+          <p class="form-message" id="formMessage" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

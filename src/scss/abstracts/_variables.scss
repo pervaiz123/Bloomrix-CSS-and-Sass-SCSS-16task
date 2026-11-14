@@ -1,0 +1,35 @@
+$colors: (
+  "primary": #635bff,
+  "primary-dark": #5148e5,
+  "text": #20243a,
+  "muted": #85899c,
+  "surface": #ffffff,
+  "background": #f6f7fb,
+  "border": #e9eaf1,
+  "success": #16865b,
+  "warning": #b7791f,
+  "danger": #d64545,
+);
+
+$spacing: (
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 0.75rem,
+  4: 1rem,
+  5: 1.25rem,
+  6: 1.5rem,
+  8: 2rem,
+  10: 2.5rem,
+  12: 3rem,
+);
+
+$radius-sm: 0.5rem;
+$radius-md: 0.75rem;
+$radius-lg: 1rem;
+$radius-full: 999px;
+
+$shadow-card: 0 4px 18px rgb(24 32 56 / 5%);
+$shadow-modal: 0 24px 70px rgb(24 32 56 / 20%);
+
+$sidebar-width: 250px;
+$transition: 180ms ease;

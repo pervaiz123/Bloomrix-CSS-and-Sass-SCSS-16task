@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "variables";
+
+@function space($level) {
+  @if map.has-key(variables.$spacing, $level) {
+    @return map.get(variables.$spacing, $level);
+  }
+
+  @error "Spacing level #{$level} does not exist.";
+}

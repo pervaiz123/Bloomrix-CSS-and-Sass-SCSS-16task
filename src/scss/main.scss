@@ -1,0 +1,5 @@
+@use "base/reset";
+@use "base/base";
+@use "layout/dashboard" as dashboard-layout;
+@use "components/components";
+@use "pages/dashboard" as dashboard-page;
